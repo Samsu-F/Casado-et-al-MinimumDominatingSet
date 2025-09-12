@@ -35,64 +35,67 @@ public class Instance {
         setSupportNodes();
     }
 
+    // private void readInstance(){
+    //     try (BufferedReader br = new BufferedReader(new FileReader(path))){
+    //         String line;
+    //         String[] lineContent;
+    //         line = br.readLine();
+    //         lineContent = line.split(" ");
+
+    //         numNodes = Integer.parseInt(lineContent[0]);
+    //         unSelectedNodes=new HashSet<>(numNodes);
+    //         br.readLine(); //para leer la linea vacia
+
+    //         adyacencyList=new ArrayList [numNodes];
+
+    //         //String line;
+    //         //boolean empty=false;
+    //         //int count=0;
+    //         //while(!empty){
+    //         //    line=br.readLine();
+    //         //    empty=line==null;
+    //         //    count+=1;
+    //         //}
+    //         //System.out.println(count);
+
+    //         for (int i = 0; i< numNodes; i++){
+    //             adyacencyList[i]=new ArrayList<>(numNodes);
+    //             unSelectedNodes.add(i);
+    //             line = br.readLine();
+    //             lineContent = line.split(" ");
+    //             for (int j=0; j<numNodes;j++){
+    //                 if (Integer.parseInt(lineContent[j])==1) {
+    //                     adyacencyList[i].add(j);
+    //                 }
+    //             }
+    //         }
+    //         br.readLine();
+    //         optimum = Integer.parseInt(br.readLine());
+
+    //     } catch (FileNotFoundException e){
+    //         System.out.println(("File not found " + path));
+    //     } catch (IOException e){
+    //         System.out.println("Error reading line");
+    //     }
+
+    //     setSupportNodes();
+    // }
+
+
     private void readInstance(){
         try (BufferedReader br = new BufferedReader(new FileReader(path))){
             String line;
             String[] lineContent;
-            line = br.readLine();
+
+            line= br.readLine();
+            while(line.startsWith("c")) {
+                line = br.readLine();
+            }
             lineContent = line.split(" ");
 
-            numNodes = Integer.parseInt(lineContent[0]);
-            unSelectedNodes=new HashSet<>(numNodes);
-            br.readLine(); //para leer la linea vacia
-
-            adyacencyList=new ArrayList [numNodes];
-
-            //String line;
-            //boolean empty=false;
-            //int count=0;
-            //while(!empty){
-            //    line=br.readLine();
-            //    empty=line==null;
-            //    count+=1;
-            //}
-            //System.out.println(count);
-
-            for (int i = 0; i< numNodes; i++){
-                adyacencyList[i]=new ArrayList<>(numNodes);
-                unSelectedNodes.add(i);
-                line = br.readLine();
-                lineContent = line.split(" ");
-                for (int j=0; j<numNodes;j++){
-                    if (Integer.parseInt(lineContent[j])==1) {
-                        adyacencyList[i].add(j);
-                    }
-                }
-            }
-            br.readLine();
-            optimum = Integer.parseInt(br.readLine());
-
-        } catch (FileNotFoundException e){
-            System.out.println(("File not found " + path));
-        } catch (IOException e){
-            System.out.println("Error reading line");
-        }
-
-        setSupportNodes();
-    }
-
-
-    private void readInstanceNew(){
-        try (BufferedReader br = new BufferedReader(new FileReader(path))){
-            String line;
-            String[] lineContent;
-
-            br.readLine();
-            line= br.readLine();
-            lineContent = line.split("\\s");
-
-            numNodes = Integer.parseInt(lineContent[0]);
-            int numEdges = Integer.parseInt(lineContent[2]);
+            numNodes = Integer.parseInt(lineContent[2]);
+            int numEdges = Integer.parseInt(lineContent[3]);
+            System.out.println("numNodes = " + numNodes + "\tnumEdges = " + numEdges); //////////////////////////////////////////////////////////////////////////////////////
             unSelectedNodes=new HashSet<>(numNodes);
             adyacencyList = new ArrayList[numNodes];
 
@@ -103,11 +106,12 @@ public class Instance {
 
             for (int i = 0; i< numEdges; i++){
                 line = br.readLine();
-                lineContent=line.split("\\s");
+                lineContent=line.split(" ");
 
                 int node1=Integer.parseInt(lineContent[0]);
                 int node2=Integer.parseInt(lineContent[1]);
 
+                System.out.println("node1 = " + node1 + "\tnode2 = " + node2); //////////////////////////////////////////////////////////////////////////////////////
                 adyacencyList[node1-1].add(node2-1);
                 adyacencyList[node2-1].add(node1-1);
             }
@@ -117,6 +121,7 @@ public class Instance {
         } catch (IOException e){
             System.out.println("Error reading line");
         }
+        System.out.println("optimum = " + optimum); //////////////////////////////////////////////////////////////////////////////////////
         setSupportNodes();
     }
 

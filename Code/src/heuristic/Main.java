@@ -21,7 +21,7 @@ public class Main {
     final static boolean readAllFolders = false;
     final static boolean readAllInstances = true;
 
-    final static String folderIndex = "LiteratureInstances";
+    final static String folderIndex = "grInstances";
     final static String instanceIndex = "astro-ph.txt";
 
     static List<String> foldersNames;
