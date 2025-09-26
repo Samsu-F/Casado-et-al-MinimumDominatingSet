@@ -23,7 +23,7 @@ public class Instance {
 
     public Instance(String path){
         this.path = path;
-        this.name = path.substring(Math.max(path.lastIndexOf("/"), path.lastIndexOf("\\"))+1).replace(".txt", "");
+        this.name = path.substring(Math.max(path.lastIndexOf("/"), path.lastIndexOf("/"))+1).replace(".txt", "");
 
         readInstance();
     }

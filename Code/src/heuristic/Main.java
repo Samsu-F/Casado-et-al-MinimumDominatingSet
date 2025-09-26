@@ -54,7 +54,6 @@ public class Main {
         }
     }
 
-
     private static void printResults(String path, Result result, String name) {
         try (PrintWriter pw = new PrintWriter(new FileWriter(path,true))) {
 
@@ -69,6 +68,7 @@ public class Main {
             e.printStackTrace();
         }
     }
+
     private static void readData(){
         foldersNames = Arrays.asList(new File(pathFolder).list());
 
@@ -112,5 +112,4 @@ public class Main {
         Result result= algorithm.execute(instance,false);
         printResults("./results/"+algorithm.toString()+".csv", result, instanceName);
     }
-
 }
