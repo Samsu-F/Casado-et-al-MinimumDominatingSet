@@ -31,7 +31,7 @@ public class IG implements IAlgorithm{
     @Override
     public Result execute(Instance instance, boolean draw) {
 
-        System.out.println(instance.getName());
+        // System.out.println(instance.getName());
 
         long initialTime=System.currentTimeMillis();
         long totalTime = System.currentTimeMillis() - initialTime;
@@ -39,6 +39,8 @@ public class IG implements IAlgorithm{
         Result result=new Result(instance.getName());
 
         Solution solution=firstSol(instance);
+        Solution bestSolution = new Solution(instance);
+        bestSolution.copy(solution);
         int numElemsToDestruct=(int)Math.ceil(beta*solution.getSelectedNotSupportNodes().size());
 
         int numItersWithoutImprove=0;
@@ -53,6 +55,7 @@ public class IG implements IAlgorithm{
             else{
                 numItersWithoutImprove=0;
                 bestOF=solution.evaluate();
+                bestSolution.copy(solution);
             }
             totalTime = System.currentTimeMillis() - initialTime;
             secs = totalTime / 1000f;
@@ -63,7 +66,9 @@ public class IG implements IAlgorithm{
 
         result.add("Time", secs);
         result.add("OF", bestOF);
-        System.out.println(secs+"\t"+bestOF);
+        System.err.println(secs + "s");
+        System.out.println(bestOF);
+        System.out.print(bestSolution);
         return result;
     }
 

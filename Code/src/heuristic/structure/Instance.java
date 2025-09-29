@@ -95,7 +95,6 @@ public class Instance {
 
             numNodes = Integer.parseInt(lineContent[2]);
             int numEdges = Integer.parseInt(lineContent[3]);
-            System.out.println("numNodes = " + numNodes + "\tnumEdges = " + numEdges); //////////////////////////////////////////////////////////////////////////////////////
             unSelectedNodes=new HashSet<>(numNodes);
             adyacencyList = new ArrayList[numNodes];
 
@@ -111,7 +110,6 @@ public class Instance {
                 int node1=Integer.parseInt(lineContent[0]);
                 int node2=Integer.parseInt(lineContent[1]);
 
-                System.out.println("node1 = " + node1 + "\tnode2 = " + node2); //////////////////////////////////////////////////////////////////////////////////////
                 adyacencyList[node1-1].add(node2-1);
                 adyacencyList[node2-1].add(node1-1);
             }
@@ -121,7 +119,6 @@ public class Instance {
         } catch (IOException e){
             System.out.println("Error reading line");
         }
-        System.out.println("optimum = " + optimum); //////////////////////////////////////////////////////////////////////////////////////
         setSupportNodes();
     }
 

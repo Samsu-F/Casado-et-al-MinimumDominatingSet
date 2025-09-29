@@ -177,4 +177,13 @@ public class Solution {
     public Set<Integer> getUnSelectedNodes() {
         return unSelectedNodes;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Integer node : selectedNodes) {
+            sb.append(node).append(System.lineSeparator());
+        }
+        return sb.toString();
+    }
 }

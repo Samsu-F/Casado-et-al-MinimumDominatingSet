@@ -40,77 +40,14 @@ public class Main {
     private static void execute()  {
         File file=new File(pathFolder);
         instanceFolderPath = file.getPath() + "/";
-        printHeaders("./results/"+algorithm.toString()+".csv");
-        readData();
+        readInstance("/dev/stdin");
     }
 
-    private static void printHeaders(String path) {
-        try (PrintWriter pw = new PrintWriter(path)) {
-            pw.print("Instance;Time;OF");
-            pw.println();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    private static void printResults(String path, Result result, String name) {
-        try (PrintWriter pw = new PrintWriter(new FileWriter(path,true))) {
-
-            pw.print(name+";");
-            int nElems=result.getKeys().size();
-            for (int i = 0; i < nElems; i++) {
-                pw.print(result.get(i));
-                if (i < nElems-1) pw.print(";");
-            }
-            pw.println();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    private static void readData(){
-        foldersNames = Arrays.asList(new File(pathFolder).list());
-
-        if(readAllFolders) readAllFolders();
-        else if (foldersNames.contains(folderIndex)) readFolder(folderIndex);
-        else System.out.println("Folder index exceeds the bounds of the array");
-
-    }
-
-    private static void readAllFolders(){
-        String [] folders =new File(pathFolder).list();
-
-        for(String fileName : folders){
-            readFolder(fileName);
-        }
-    }
-
-    private static void readFolder(String fileName){
-        File file;
-        file=new File(pathFolder+"/"+fileName);
-        if(!fileName.startsWith(".") && !fileName.startsWith("..") && file.isDirectory()){
-            instancesNames = Arrays.asList(file.list());
-            instanceFolderPath = file.getPath() + "/";
-            if(readAllInstances) readAllInstances();
-            else if (instancesNames.contains(instanceIndex)) readInstance(instanceIndex);
-            else System.out.println("Instance index exceeds the bounds of the array");
-        }
-    }
-
-    private static void readAllInstances(){
-        for(String instanceName : instancesNames){
-            if(!instanceName.startsWith(".") && !instanceName.startsWith(".."))
-                readInstance(instanceName);
-        }
-    }
-
-    private static void readInstance(String instanceName){
-        System.out.println(instanceName);
-        Instance instance=new Instance(instanceFolderPath +instanceName);
+    private static void readInstance(String instancePath){
+        System.err.println(instancePath);
+        Instance instance=new Instance(instancePath);
         RandomManager.setSeed(13);
         Result result= algorithm.execute(instance,false);
-        printResults("./results/"+algorithm.toString()+".csv", result, instanceName);
     }
 
 }
