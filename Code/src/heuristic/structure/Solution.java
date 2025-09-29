@@ -182,7 +182,7 @@ public class Solution {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (Integer node : selectedNodes) {
-            sb.append(node).append(System.lineSeparator());
+            sb.append(node + 1).append(System.lineSeparator());
         }
         return sb.toString();
     }
