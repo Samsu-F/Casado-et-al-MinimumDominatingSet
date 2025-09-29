@@ -49,5 +49,4 @@ public class Main {
         RandomManager.setSeed(13);
         Result result= algorithm.execute(instance,false);
     }
-
 }
